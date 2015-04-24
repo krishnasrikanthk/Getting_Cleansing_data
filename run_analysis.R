@@ -130,7 +130,8 @@
 
 ##    Appropriately labels the data set with descriptive variable names. 
       
-      descriptive.var_names <- data.frame(short_name = c("^t","^f","Acc","Gyro","Mag","BodyBody","std","-"),full_name=c("Time","Frequency","Accelerometer","GyroMeter","Magnitude","Body","Standard_Deviation","_")) 
+      descriptive.var_names <- data.frame(short_name = c("^t","^f","Acc","Gyro","Mag","BodyBody","std","-"),
+                                          full_name=c("Time","Frequency","Accelerometer","GyroMeter","Magnitude","Body","Standard_Deviation","_")) 
       for(i in 1:nrow(descriptive.var_names)){
             names(data_set_descriptive)<- gsub(descriptive.var_names$short_name[i],descriptive.var_names$full_name[i],names(data_set_descriptive)) 
       }
@@ -143,5 +144,5 @@
                                by=list(Activity=data_set_descriptive$Activity,
                                        Subject= data_set_descriptive$Subject), 
                                                                                     mean)
-      
+      write.table(agg_data_set,"tidy_data.txt", row.names=FALSE)      
 ##    head(agg_data_set,5) - validation of output
