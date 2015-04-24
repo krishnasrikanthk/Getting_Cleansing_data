@@ -1,5 +1,7 @@
 ##    Getting and Cleansing Data Project
 
+##    Author : Srikanth Kappagantula
+##    Date : 24-Apr-2015
 ##    For each record it is provided:
 ##    ======================================
       
@@ -12,7 +14,8 @@
 
 ##    download files if not previously downloaded from URL defined below
       
-      setwd("C:\\Users\\kappagan\\Learning\\Coursera\\Assignments\\Getting_Cleansing_data")
+      #setwd("C:\\Users\\kappagan\\Learning\\Coursera\\Assignments\\Getting_Cleansing_data")
+      setwd("C:\\Users\\kappagan\\Documents\\Getting_Cleansing_data")
       url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
       zip_file <- "FUCI.zip"
       if(!file.exists(zip_file)){
