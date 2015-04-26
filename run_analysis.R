@@ -3,6 +3,7 @@
 ##    Author : Srikanth Kappagantula
 ##    Date : 24-Apr-2015
 ##    For each record it is provided:
+##    Codebase : README.md
 ##    ======================================
       
 ##    - Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
@@ -87,12 +88,17 @@
       file_loc.IS_total_acc_y_test<- paste(dir.test.inertial_signals,"total_acc_y_test.txt",sep = dir.separator) ## The acceleration signal from the smartphone accelerometer X axis in standard gravity units 'g'. 
       file_loc.IS_total_acc_z_test<- paste(dir.test.inertial_signals,"total_acc_z_test.txt",sep = dir.separator) ## The acceleration signal from the smartphone accelerometer X axis in standard gravity units 'g'. 
 
-##    read test and train datasets
+##    Other Variables
       
       col.features <- c("Signal_ID","Signal")
       col.data_labels = c("Activity_ID")
       col.activity_labels <- c("Activity_ID","Activity") 
       col.subjects <- c("Subject")
+      descriptive.var_names <- data.frame(short_name = c("^t","^f","Acc","Gyro","Mag","BodyBody","std","-"),
+                                    full_name=c("Time","Frequency","Accelerometer","GyroMeter","Magnitude","Body","Standard_Deviation","_")) 
+      file.tidy_data_set <- "tidy_data.txt"
+##    read test and train datasets
+
       features<- read.table(file_loc.features) # holds various features captured
       colnames(features) <-   col.features    
       activity_labels<- read.table(file_loc.activity_labels) #holds various activities
@@ -130,8 +136,6 @@
 
 ##    Appropriately labels the data set with descriptive variable names. 
       
-      descriptive.var_names <- data.frame(short_name = c("^t","^f","Acc","Gyro","Mag","BodyBody","std","-"),
-                                          full_name=c("Time","Frequency","Accelerometer","GyroMeter","Magnitude","Body","Standard_Deviation","_")) 
       for(i in 1:nrow(descriptive.var_names)){
             names(data_set_descriptive)<- gsub(descriptive.var_names$short_name[i],descriptive.var_names$full_name[i],names(data_set_descriptive)) 
       }
@@ -144,5 +148,5 @@
                                by=list(Activity=data_set_descriptive$Activity,
                                        Subject= data_set_descriptive$Subject), 
                                                                                     mean)
-      write.table(agg_data_set,"tidy_data.txt", row.names=FALSE)      
+      write.table(agg_data_set,file.tidy_data_set, row.names=FALSE)      
 ##    head(agg_data_set,5) - validation of output
